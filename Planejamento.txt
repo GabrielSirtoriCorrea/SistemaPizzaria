@@ -1,0 +1,56 @@
+plataformas e linguagens = Android Studio (App), Python(Server), Java (Desktop), Banco de dados SQLite
+
+App:
+	Objetivo: Enviar pedidos
+
+	Mostrar na tela: Endereço de entrega, promoções, informações da pizzaria, area de novo pedido
+
+	enviar json: {
+		Cliente: "",
+		Telefone: "",
+	                  endereço: "",
+		Tipo de pizza: "",
+		Borda: "",
+		Qntd sabores: 1,
+		Sabor1: "",
+		Sabor2: "",
+		Valor total: "",
+		}
+
+
+	Tarefas:
+	
+		Usuário escolhe o pedido
+		Envia o pedido para o servidor
+		Espera resposta de confirmação do Servidor
+		
+
+Server:
+	Objetivo: Injetar dados recebidos no banco de dados
+	
+	Tarefa1 (Thread com o Usuário):
+		Receber pedido JSON do usuário
+		Armazenar no banco de dados com o estado EM ANDAMENTO
+		Enviar resposta para o Usuário
+
+	Tarefa2 (Thread com o Desktop):
+		Enviar continuamente os dados do banco de dados
+		Receber requisição de pedido completo e mudar estado do pedido para COMPLETO
+
+Banco de dados:
+
+	Tabela: Pedido
+	Colunas: Cliente, Telefone, endereço, tipo da pizza, borda, qntd de sabores, sabor1, sabor2, Valor total, estado Pedido
+ 	
+
+Desktop:
+	Aba pedidos atuais:
+		Mostra todos os pedidos do banco de dados com o estado EM ANDAMENTO ao lado(Lista de espera)
+		Mostra no centro da tela os pedidos que estão sendo feitos no momento
+		
+	Aba Histórico de pedidos:
+		Mostra todos os pedidos do banco de dados
+		
+	Aba Estatisticas:
+		Mostra um gráfico com os sabores mais pedidos
+		Mostra a renda total
