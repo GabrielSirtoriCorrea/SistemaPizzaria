@@ -14,7 +14,9 @@ App:
 		Qntd sabores: 1,
 		Sabor1: "",
 		Sabor2: "",
+		Observações: "",
 		Valor total: "",
+		
 		}
 
 
@@ -40,7 +42,7 @@ Server:
 Banco de dados:
 
 	Tabela: Pedido
-	Colunas: Cliente, Telefone, endereço, tipo da pizza, borda, qntd de sabores, sabor1, sabor2, Valor total, estado Pedido
+	Colunas: Cliente, Telefone, endereço, tipo da pizza, borda, qntd de sabores, sabor1, sabor2, Observações, Valor total, estado Pedido
  	
 
 Desktop:
