@@ -1,2 +1,2 @@
-# PizzeriaSystem
+# SistemaPizzaria
 Exemple of pizzeria system
