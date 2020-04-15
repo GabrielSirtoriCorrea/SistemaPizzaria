@@ -6,6 +6,7 @@ App:
 	Mostrar na tela: Endereço de entrega, promoções, informações da pizzaria, area de novo pedido
 
 	enviar json: {
+                                    ID: "",
 		Cliente: "",
 		Telefone: "",
 	                  endereço: "",
@@ -25,6 +26,30 @@ App:
 		Usuário escolhe o pedido
 		Envia o pedido para o servidor
 		Espera resposta de confirmação do Servidor
+
+
+                 Classes: Adapter (Converte as pizzas para serem exibidas no ListView)
+                              SaborPizza (Dá origem a todas as pizzas disponiveis )
+                              Pedido (Dá origem a todas as caracteristicas do pedido a serem enviadas pelo JSON)]
+                              Adreess (Classe da activity Address)
+                              Request (Classe da activity Request)
+                              SecurityPreferences(Armazena: Cliente, telefone, endereço)
+	            SocketConnection (Cria comunicação com o servidor)
+
+
+                  Atributos SaborPizza: Sabor
+                                                    preço
+
+	Métodos SaborPizza: Constructor, Getters e setters
+                  
+	Atributos Pedido: Cliente, Telefone, Endereço, Tipo de pizza, Borda, Qntd sabores, PizzaSabor1, PizzaSabor2, observações, valorTotal
+
+	MétodosPedido: Constructor, Geters, setters e PrepararPedido
+
+		PrepararPedido(): Pega todos os atributos da classe e converte para um JSON  
+
+                  *ValorTotal definido pelo Valor do PizzaSabor1 + PizzaSabor2 
+                                          
 		
 
 Server:
@@ -46,6 +71,9 @@ Banco de dados:
  	
 
 Desktop:
+	Classes: SocketConnection(Cria comunicação com o servidor)
+                               Pedido
+
 	Aba pedidos atuais:
 		Mostra todos os pedidos do banco de dados com o estado EM ANDAMENTO ao lado(Lista de espera)
 		Mostra no centro da tela os pedidos que estão sendo feitos no momento
