@@ -61,7 +61,7 @@ Server:
 		Enviar resposta para o Usuário
 
 	Tarefa2 (Thread com o Desktop):
-		Enviar continuamente os dados do banco de dados
+		Enviar continuamente os dados do banco de dados por um JSON com todos os pedidos
 		Receber requisição de pedido completo e mudar estado do pedido para COMPLETO
 
 Banco de dados:
@@ -72,7 +72,6 @@ Banco de dados:
 
 Desktop:
 	Classes: SocketConnection(Cria comunicação com o servidor)
-                               Pedido
 
 	Aba pedidos atuais:
 		Mostra todos os pedidos do banco de dados com o estado EM ANDAMENTO ao lado(Lista de espera)
