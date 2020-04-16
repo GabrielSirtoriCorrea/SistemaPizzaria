@@ -3,48 +3,48 @@ plataformas e linguagens = Android Studio (App), Python(Server), Java (Desktop),
 App:
 	Objetivo: Enviar pedidos
 
-	Mostrar na tela: Endereço de entrega, promoções, informações da pizzaria, area de novo pedido
+	Mostrar na tela: Endereï¿½o de entrega, promoï¿½ï¿½es, informaï¿½ï¿½es da pizzaria, area de novo pedido
 
 	enviar json: {
                                     ID: "",
 		Cliente: "",
 		Telefone: "",
-	                  endereço: "",
+	                  endereï¿½o: "",
 		Tipo de pizza: "",
 		Borda: "",
 		Qntd sabores: 1,
 		Sabor1: "",
 		Sabor2: "",
-		Observações: "",
+		Observaï¿½ï¿½es: "",
 		Valor total: "",
-		
+		status: ""
 		}
 
 
 	Tarefas:
 	
-		Usuário escolhe o pedido
+		Usuï¿½rio escolhe o pedido
 		Envia o pedido para o servidor
-		Espera resposta de confirmação do Servidor
+		Espera resposta de confirmaï¿½ï¿½o do Servidor
 
 
                  Classes: Adapter (Converte as pizzas para serem exibidas no ListView)
-                              SaborPizza (Dá origem a todas as pizzas disponiveis )
-                              Pedido (Dá origem a todas as caracteristicas do pedido a serem enviadas pelo JSON)]
+                              SaborPizza (Dï¿½ origem a todas as pizzas disponiveis )
+                              Pedido (Dï¿½ origem a todas as caracteristicas do pedido a serem enviadas pelo JSON)]
                               Adreess (Classe da activity Address)
                               Request (Classe da activity Request)
-                              SecurityPreferences(Armazena: Cliente, telefone, endereço)
-	            SocketConnection (Cria comunicação com o servidor)
+                              SecurityPreferences(Armazena: Cliente, telefone, endereï¿½o)
+	            SocketConnection (Cria comunicaï¿½ï¿½o com o servidor)
 
 
                   Atributos SaborPizza: Sabor
-                                                    preço
+                                                    preï¿½o
 
-	Métodos SaborPizza: Constructor, Getters e setters
+	Mï¿½todos SaborPizza: Constructor, Getters e setters
                   
-	Atributos Pedido: Cliente, Telefone, Endereço, Tipo de pizza, Borda, Qntd sabores, PizzaSabor1, PizzaSabor2, observações, valorTotal
+	Atributos Pedido: Cliente, Telefone, Endereï¿½o, Tipo de pizza, Borda, Qntd sabores, PizzaSabor1, PizzaSabor2, observaï¿½ï¿½es, valorTotal
 
-	MétodosPedido: Constructor, Geters, setters e PrepararPedido
+	Mï¿½todosPedido: Constructor, Geters, setters e PrepararPedido
 
 		PrepararPedido(): Pega todos os atributos da classe e converte para um JSON  
 
@@ -55,31 +55,31 @@ App:
 Server:
 	Objetivo: Injetar dados recebidos no banco de dados
 	
-	Tarefa1 (Thread com o Usuário):
-		Receber pedido JSON do usuário
+	Tarefa1 (Thread com o Usuï¿½rio):
+		Receber pedido JSON do usuï¿½rio
 		Armazenar no banco de dados com o estado EM ANDAMENTO
-		Enviar resposta para o Usuário
+		Enviar resposta para o Usuï¿½rio
 
 	Tarefa2 (Thread com o Desktop):
 		Enviar continuamente os dados do banco de dados por um JSON com todos os pedidos
-		Receber requisição de pedido completo e mudar estado do pedido para COMPLETO
+		Receber requisiï¿½ï¿½o de pedido completo e mudar estado do pedido para COMPLETO
 
 Banco de dados:
 
 	Tabela: Pedido
-	Colunas: Cliente, Telefone, endereço, tipo da pizza, borda, qntd de sabores, sabor1, sabor2, Observações, Valor total, estado Pedido
+	Colunas: Cliente, Telefone, endereï¿½o, tipo da pizza, borda, qntd de sabores, sabor1, sabor2, Observaï¿½ï¿½es, Valor total, estado Pedido
  	
 
 Desktop:
-	Classes: SocketConnection(Cria comunicação com o servidor)
+	Classes: SocketConnection(Cria comunicaï¿½ï¿½o com o servidor)
 
 	Aba pedidos atuais:
 		Mostra todos os pedidos do banco de dados com o estado EM ANDAMENTO ao lado(Lista de espera)
-		Mostra no centro da tela os pedidos que estão sendo feitos no momento
+		Mostra no centro da tela os pedidos que estï¿½o sendo feitos no momento
 		
-	Aba Histórico de pedidos:
+	Aba Histï¿½rico de pedidos:
 		Mostra todos os pedidos do banco de dados
 		
 	Aba Estatisticas:
-		Mostra um gráfico com os sabores mais pedidos
+		Mostra um grï¿½fico com os sabores mais pedidos
 		Mostra a renda total
