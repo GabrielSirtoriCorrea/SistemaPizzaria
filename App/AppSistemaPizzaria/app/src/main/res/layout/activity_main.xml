@@ -51,6 +51,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/novo_pedido"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:fontFamily="serif"
+        android:textStyle="italic"/>
+
     <ImageButton
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -58,6 +70,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/background_novo_pedido"
+        android:id="@+id/btnMain1Sabor"
+        />
+
+    <ImageButton
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/background_novo_pedido_2"
+        android:id="@+id/btnMain2Sabor"
         />
 
 </LinearLayout>
