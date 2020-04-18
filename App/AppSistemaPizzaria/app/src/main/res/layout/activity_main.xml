@@ -81,6 +81,7 @@
         android:layout_marginEnd="16dp"
         android:src="@drawable/background_novo_pedido_2"
         android:id="@+id/btnMain2Sabor"
+        android:onClick="test"
         />
 
 </LinearLayout>
