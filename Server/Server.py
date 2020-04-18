@@ -19,7 +19,7 @@ import json, time, os, DataBaseConnection
 
 #myHost = '192.168.0.113'
 myHost = '192.168.0.5'
-myPort = 5000
+myPort = 3000
 
 class ClientManage(socketserver.BaseRequestHandler):
     def handle(self):
