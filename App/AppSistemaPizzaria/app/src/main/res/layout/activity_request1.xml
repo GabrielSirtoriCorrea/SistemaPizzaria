@@ -23,60 +23,60 @@
         android:textColor="#fff"
         />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp">
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza_pequena_8_peda_os"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
 
-        <ListView
+            />
+
+        <CheckBox
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:id="@+id/ListRequest1Tipo">
+            android:layout_height="wrap_content"
+            android:id="@+id/CheckRequest1TypePequena"
+            android:layout_marginTop="10dp"/>
 
 
+    </LinearLayout>
 
-        </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza_grande_12_peda_os"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
 
-    </RelativeLayout>
+            />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CheckRequest1TypeGrande"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="20sp"
-        android:text="@string/borda"
-        android:textColor="#fff"
-        />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp">
-
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:id="@+id/ListRequest1Borda">
-
-
-
-        </ListView>
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:textSize="20sp"
@@ -94,7 +94,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="170dp"
             android:id="@+id/ListRequest1Sabor">
 
 
@@ -129,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/customized_button"
         android:text="@string/enviar"
         android:textColor="#fff"/>
