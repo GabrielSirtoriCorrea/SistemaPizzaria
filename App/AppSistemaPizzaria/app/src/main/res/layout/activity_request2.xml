@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/cabecalho"
         android:src="@drawable/logo"/>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -21,62 +23,60 @@
         android:textSize="15sp"
         android:text="@string/tipo_da_pizza"
         android:textColor="#fff"
-        />
+            />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp">
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza_pequena_8_peda_os"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
 
+            />
 
-        <ListView
+        <CheckBox
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:id="@+id/ListRequest2Tipo">
+            android:layout_height="wrap_content"
+            android:id="@+id/CheckRequest2TypePequena"
+            android:layout_marginTop="10dp"/>
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza_grande_12_peda_os"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
 
-        </ListView>
+            />
 
-    </RelativeLayout>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CheckRequest2TypeGrande"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="15sp"
-        android:text="@string/borda"
-        android:textColor="#fff"
-        />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp">
-
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:id="@+id/ListRequest2Borda">
-
-
-
-        </ListView>
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:textSize="15sp"
@@ -90,7 +90,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp">
-
 
         <ListView
             android:layout_width="match_parent"
@@ -126,8 +125,6 @@
             android:layout_height="90dp"
             android:id="@+id/ListRequest2Sabor2">
 
-
-
         </ListView>
 
     </RelativeLayout>
@@ -152,7 +149,6 @@
         android:backgroundTint="#fff"
         android:id="@+id/txtAddressNumero"/>
 
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -161,6 +157,5 @@
         android:background="@drawable/customized_button"
         android:text="@string/enviar"
         android:textColor="#fff"/>
-
 
 </LinearLayout>

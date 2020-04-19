@@ -1,5 +1,6 @@
 package com.gazeboindustries.appsistemapizzaria;
 
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -15,8 +16,8 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class SocketConnection  extends AsyncTask<String, Integer, String>{
+    //private String IP = "192.168.0.113";
     private String IP = "192.168.0.5";
-    //private String IP = "189.46.89.151";
     private int port = 3000;
     private Socket socket = null;
     private PrintWriter out = null;

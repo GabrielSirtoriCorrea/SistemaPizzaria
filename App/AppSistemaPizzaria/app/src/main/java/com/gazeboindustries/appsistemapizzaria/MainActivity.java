@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,15 +21,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SocketConnection connection = new SocketConnection();
 
-        connection.execute("TESTE CONEXÃO SOCKET");
 
     }
 
-    public void test(View view){
-        SocketConnection connection = new SocketConnection();
+    public void StartRequest1(View view){
+        Intent intent = new Intent(getApplicationContext(), Request.class);
+        startActivity(intent);
+    }
 
-        connection.execute("TESTE CONEXÃO SOCKET");
+    public void StartRequest2(View view){
+        Intent intent = new Intent(getApplicationContext(), Request2.class);
+        startActivity(intent);
     }
 }
