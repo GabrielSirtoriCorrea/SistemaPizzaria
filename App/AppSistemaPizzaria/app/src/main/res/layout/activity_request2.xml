@@ -61,9 +61,7 @@
             android:textSize="15sp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-
-            />
+            android:layout_marginEnd="16dp" />
 
         <CheckBox
             android:layout_width="match_parent"
@@ -80,34 +78,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:textSize="15sp"
-        android:text="@string/sabor"
-        android:textColor="#fff"
-        />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp">
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:id="@+id/ListRequest2Sabor1">
-
-        </ListView>
-
-    </RelativeLayout>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="15sp"
         android:text="@string/sabor_2"
         android:textColor="#fff"
         />
@@ -119,11 +89,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp">
 
-
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:id="@+id/ListRequest2Sabor2">
+            android:layout_height="220dp"
+            android:id="@+id/ListRequest2Sabor1">
 
         </ListView>
 
@@ -147,7 +116,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#fff"
-        android:id="@+id/txtAddressNumero"/>
+        android:id="@+id/txtAddressNumero"
+        android:autofillHints="" />
 
     <Button
         android:layout_width="match_parent"

@@ -31,19 +31,9 @@ public class Request extends Activity implements CompoundButton.OnCheckedChangeL
         list.add(new SaborPizza("Frango", "R$ 15"));
         list.add(new SaborPizza("Bacon", "R$ 30"));
         list.add(new SaborPizza("Saboiestojo", "R$ 100"));
-        list.add(new SaborPizza("Pimenta", "R$ 50"));
-        list.add(new SaborPizza("SaboEdukof", "R$ R$ 200000"));
-        list.add(new SaborPizza("Goiaba", "R$ 40"));
-        list.add(new SaborPizza("Amoeba", "R$ 1"));
-        list.add(new SaborPizza("Madeira", "R$ 12000"));
-        list.add(new SaborPizza("Coco", "R$ 10"));
-        list.add(new SaborPizza("Chocojhonson", "R$ 20"));
-        list.add(new SaborPizza("PC", "R$ 800"));
-        list.add(new SaborPizza("Dislike", "R$ 1"));
 
         versionAdapter = new ListViewAdapter(Request.this,R.layout.item_row,list);
         listView.setAdapter(versionAdapter);
-
 
     }
 
@@ -55,6 +45,8 @@ public class Request extends Activity implements CompoundButton.OnCheckedChangeL
 
             SaborPizza sabor = list.get(position);
             sabor.setSelected(b);
+
+
 
             Toast.makeText(this, "Selected : "+ sabor.getTaste(), Toast.LENGTH_SHORT).show();
         }

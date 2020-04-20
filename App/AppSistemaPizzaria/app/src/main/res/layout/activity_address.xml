@@ -27,6 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#fff"
+        android:textColor="#fff"
         android:id="@+id/txtAddressRua"/>
 
     <TextView
@@ -45,6 +46,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#fff"
+        android:textColor="#fff"
         android:id="@+id/txtAddressNumero"/>
 
 
@@ -65,6 +67,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#fff"
+        android:textColor="#fff"
         android:id="@+id/txtAddressBairro"/>
 
     <TextView
@@ -83,6 +86,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#fff"
+        android:textColor="#fff"
         android:id="@+id/txtAddressComplemento"/>
 
 
@@ -94,6 +98,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/customized_button"
-        android:textColor="#fff"/>
+        android:textColor="#fff"
+        android:onClick="SaveAddress"/>
 
 </LinearLayout>
