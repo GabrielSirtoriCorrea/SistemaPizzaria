@@ -12,7 +12,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Request">
         </activity>
-        <activity android:name=".Request2">
+        <activity android:name=".RequestTwo">
+        </activity>
+        <activity android:name=".Address">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
