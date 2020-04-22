@@ -76,15 +76,4 @@
         android:onClick="StartRequest1"
         />
 
-    <ImageButton
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/background_novo_pedido_2"
-        android:id="@+id/btnMain2Sabor"
-        android:onClick="StartRequest2"
-        />
-
 </LinearLayout>

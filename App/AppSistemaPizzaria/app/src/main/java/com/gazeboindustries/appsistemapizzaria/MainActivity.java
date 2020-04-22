@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void StartRequest2(View view){
-        Intent intent = new Intent(getApplicationContext(), RequestTwo.class);
-        startActivity(intent);
-    }
-
     public void StartAddress(View view){
         Intent intent = new Intent(getApplicationContext(), Address.class);
         startActivity(intent);
