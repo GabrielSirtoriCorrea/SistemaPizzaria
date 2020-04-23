@@ -28,7 +28,20 @@ class DataBaseConnection:
 
     def getAllRequests(self):
         self.DataBaseCursor.execute('SELECT * from Request')
-        return self.DataBaseCursor.fetchall()
+        Requests = self.DataBaseCursor.fetchall()
+
+        jsonResponse = {
+        'client': Requests[0][0],
+        'phone': Requests[0][1],
+        'address': Requests[0][2],
+        'pizzaType': Requests[0][3],
+        'pizzaQntdTastes': Requests[0][4],
+        'pizzaTaste1': Requests[0][5],
+        'comments': "null",
+        'totalPrice': Requests[0][7],
+        'status': Requests[0][8]}
+
+        return jsonResponse
 
 
     def setFinishRequest(self, client):
