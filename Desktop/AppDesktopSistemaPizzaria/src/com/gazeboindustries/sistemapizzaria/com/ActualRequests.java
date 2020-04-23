@@ -5,6 +5,11 @@
  */
 package com.gazeboindustries.sistemapizzaria.com;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;;
+
 /**
  *
  * @author Gazebo
@@ -90,7 +95,18 @@ public class ActualRequests extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinishRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishRequestActionPerformed
-        // TODO add your handling code here:
+        try {
+             JSONObject jsonObj = new JSONObject();
+             
+             jsonObj.put("ID", "DesktopGetAllRequests");
+             
+            SocketConnection connection = new SocketConnection("192.168.0.5",  3000);
+            
+            connection.SendMessage(String.valueOf(jsonObj));
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnFinishRequestActionPerformed
 
     /**

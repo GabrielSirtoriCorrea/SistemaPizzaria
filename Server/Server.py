@@ -2,6 +2,7 @@ import socketserver
 from datetime import datetime
 import json, time, os, DataBaseConnection
 
+print("=-=-=-=-=-=-=-=-=-=-=-=-=-=--=Servidor iniciado-=-=-=-=-=-=-=-=-=--=-=-=-=-=")
 
 '''jsonTest = {
         'ID': 'Testando',
@@ -29,23 +30,24 @@ class ClientManage(socketserver.BaseRequestHandler):
 
         data = self.request.recv(1024).decode('utf-8')
         print(data)
+  
+        if True:
+            data = json.loads(data)
 
-        data = json.loads(data)
+            if data['ID'] == 'AppSendNewRequest':
+                DataBase = DataBaseConnection.DataBaseConnection()
+                DataBase.InsertNewRequest(json.dumps(data))
+                print(DataBase.getAllRequests())
+                    
+            elif data['ID'] == 'DesktopFinishRequest':
+                DataBase = DataBaseConnection.DataBaseConnection()
+                DataBase.setFinishRequest(data['client'])
+                print(DataBase.getAllRequests())
 
-        if data['ID'] == 'AppSendNewRequest':
-            DataBase = DataBaseConnection.DataBaseConnection()
-            DataBase.InsertNewRequest(json.dumps(data))
-            print(DataBase.getAllRequests())
-                
-        elif data['ID'] == 'DesktopFinishRequest':
-            DataBase = DataBaseConnection.DataBaseConnection()
-            DataBase.setFinishRequest(data['client'])
-            print(DataBase.getAllRequests())
-
-        elif data['ID'] == 'DesktopGetAllRequests':
-            DataBase = DataBaseConnection.DataBaseConnection()
-            self.request.send(json.dumps(DataBase.getAllRequests()).encode())
-
+            elif data['ID'] == 'DesktopGetAllRequests':
+                DataBase = DataBaseConnection.DataBaseConnection()
+                self.request.send(json.dumps(DataBase.getAllRequests()).encode())
+    
 
 adress = (myHost, myPort)
 server = socketserver.ThreadingTCPServer(adress, ClientManage)
