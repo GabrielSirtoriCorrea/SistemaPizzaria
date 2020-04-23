@@ -6,7 +6,9 @@
 package com.gazeboindustries.sistemapizzaria.com;
 
 import com.google.gson.Gson;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Arrays;
@@ -16,6 +18,7 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -27,7 +30,7 @@ public class SocketConnection {
     private String message;
     private Socket client;
     PrintStream out;
-    Scanner in;
+    InputStream in;
     
     public SocketConnection(String ip, int port) throws IOException {
         this.ip = ip;
@@ -35,19 +38,23 @@ public class SocketConnection {
         
         this.client = new Socket(this.ip, this.port);
         out = new PrintStream(client.getOutputStream()); 
-        in = new Scanner(client.getInputStream());
+        in = new BufferedInputStream(client.getInputStream());
         
     }
     
-    public void SendMessage(String message) throws JSONException {
+    public void SendMessage(String message) throws JSONException, IOException {
        out.print(message);
        
-        while(in.hasNext()){
-            //JSONObject jsonObj = new JSONObject(in.next());
+       
+        String json = IOUtils.toString(in, "UTF-8");
         
-            System.out.println(in.next());
-            
-        }
+        JSONObject jsonObj = new JSONObject(json);
+        JSONObject request1 = new JSONObject(jsonObj.get("2").toString());    
+        
+        
+        System.out.println(jsonObj.toString());
+        System.out.println(request1.get("client").toString());    
+        
     }
     
     

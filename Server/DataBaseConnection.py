@@ -29,19 +29,34 @@ class DataBaseConnection:
     def getAllRequests(self):
         self.DataBaseCursor.execute('SELECT * from Request')
         Requests = self.DataBaseCursor.fetchall()
+        ListRequestsIDs = list()
+        ListRequests = list()
+        ListRequestData = ['client', 'phone', 'address', 'pizzaType', 'pizzaQntdTastes', 'pizzaTaste1', 'comments', 'totalPrice', 'status']
+        cont = 0
 
-        jsonResponse = {
-        'client': Requests[0][0],
-        'phone': Requests[0][1],
-        'address': Requests[0][2],
-        'pizzaType': Requests[0][3],
-        'pizzaQntdTastes': Requests[0][4],
-        'pizzaTaste1': Requests[0][5],
-        'comments': "null",
-        'totalPrice': Requests[0][7],
-        'status': Requests[0][8]}
+        for Request in Requests:
+            cont+=1
+            print(cont)
+            ListRequestsIDs.append(str(cont))
 
-        return jsonResponse
+            ListRequests.append(dict(zip(ListRequestData, Request)))
+            '''DictResponse += {
+            'client': Requests[Request][0],
+            'phone': Requests[Request][1],
+            'address': Requests[Request][2],
+            'pizzaType': Requests[Request][3],
+            'pizzaQntdTastes': Requests[Request][4],
+            'pizzaTaste1': Requests[Request][5],
+            'comments': Requests[Request][6],
+            'totalPrice': Requests[Request][7],
+            'status': Requests[Request][8]}'''
+
+
+        DictResponse = dict(zip(ListRequestsIDs, ListRequests))
+
+        print(DictResponse)
+
+        return DictResponse
 
 
     def setFinishRequest(self, client):
