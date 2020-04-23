@@ -31,6 +31,7 @@ class ClientManage(socketserver.BaseRequestHandler):
         data = self.request.recv(1024).decode('utf-8')
         print(data)
   
+        #try:
         if True:
             data = json.loads(data)
 
@@ -47,7 +48,8 @@ class ClientManage(socketserver.BaseRequestHandler):
             elif data['ID'] == 'DesktopGetAllRequests':
                 DataBase = DataBaseConnection.DataBaseConnection()
                 self.request.send(json.dumps(DataBase.getAllRequests()).encode())
-    
+        '''except:
+            print("ALGUM ERRO ACONTECEU")'''
 
 adress = (myHost, myPort)
 server = socketserver.ThreadingTCPServer(adress, ClientManage)
