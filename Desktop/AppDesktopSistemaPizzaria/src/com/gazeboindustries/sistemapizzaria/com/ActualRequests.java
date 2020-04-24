@@ -5,23 +5,44 @@
  */
 package com.gazeboindustries.sistemapizzaria.com;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONObject;;
+import javax.swing.Timer;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
  * @author Gazebo
  */
 public class ActualRequests extends javax.swing.JFrame {
-
+    SocketConnection connection;
+    JSONObject jsonObj;
+    String AllRequests;
+    JSONObject AllRequestsJson;
+    
+   
     /**
      * Creates new form AppDesktopSistemaPizzaria
      */
     public ActualRequests() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        jsonObj = new JSONObject();
+             
+        jsonObj.put("ID", "DesktopGetAllRequests");
+        
+         Timer timer = new Timer(1000, new ActionListenerLoop());
+        timer.start();
     }
 
     /**
@@ -34,9 +55,10 @@ public class ActualRequests extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        PanelRequests = new javax.swing.JScrollPane();
         PanelLastRequest = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         btnFinishRequest = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         Imagebackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -49,19 +71,13 @@ public class ActualRequests extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\Logo.jpg")); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(40, 40, 280, 170);
-        getContentPane().add(PanelRequests);
-        PanelRequests.setBounds(30, 240, 370, 570);
 
-        javax.swing.GroupLayout PanelLastRequestLayout = new javax.swing.GroupLayout(PanelLastRequest);
-        PanelLastRequest.setLayout(PanelLastRequestLayout);
-        PanelLastRequestLayout.setHorizontalGroup(
-            PanelLastRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
-        );
-        PanelLastRequestLayout.setVerticalGroup(
-            PanelLastRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
-        );
+        PanelLastRequest.setBackground(new java.awt.Color(153, 0, 0));
+        PanelLastRequest.setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\Imagem Cliente.jpg")); // NOI18N
+        PanelLastRequest.add(jLabel2);
+        jLabel2.setBounds(40, 100, 270, 190);
 
         getContentPane().add(PanelLastRequest);
         PanelLastRequest.setBounds(470, 60, 870, 670);
@@ -76,6 +92,20 @@ public class ActualRequests extends javax.swing.JFrame {
         });
         getContentPane().add(btnFinishRequest);
         btnFinishRequest.setBounds(1050, 740, 280, 70);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(30, 240, 370, 550);
 
         Imagebackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\WallpaperDesktop2.jpg")); // NOI18N
         Imagebackground.setText("jLabel1");
@@ -95,18 +125,7 @@ public class ActualRequests extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinishRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishRequestActionPerformed
-        try {
-             JSONObject jsonObj = new JSONObject();
-             
-             jsonObj.put("ID", "DesktopGetAllRequests");
-             
-            SocketConnection connection = new SocketConnection("192.168.0.5",  3000);
-            
-            connection.SendMessage(String.valueOf(jsonObj));
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_btnFinishRequestActionPerformed
 
     /**
@@ -148,11 +167,37 @@ public class ActualRequests extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Imagebackground;
     private javax.swing.JPanel PanelLastRequest;
-    private javax.swing.JScrollPane PanelRequests;
     private javax.swing.JButton btnFinishRequest;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    class ActionListenerLoop implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                connection = new SocketConnection("192.168.0.5",  3000);
+                
+                AllRequests = connection.SendMessage(String.valueOf(jsonObj));
+                AllRequestsJson = new JSONObject(AllRequests);
+                System.out.println(AllRequestsJson.get("1").toString());
+                
+                connection.Close();
+                
+            } catch (JSONException ex) {
+                Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+    }
+    
+
 }
