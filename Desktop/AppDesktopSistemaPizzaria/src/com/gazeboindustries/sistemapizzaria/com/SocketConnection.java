@@ -42,20 +42,23 @@ public class SocketConnection {
         
     }
     
-    public void SendMessage(String message) throws JSONException, IOException {
+    public String SendMessage(String message) throws JSONException, IOException {
        out.print(message);
        
        
         String json = IOUtils.toString(in, "UTF-8");
+       
+       
+        return json;
         
-        JSONObject jsonObj = new JSONObject(json);
-        JSONObject request1 = new JSONObject(jsonObj.get("2").toString());    
-        
-        
-        System.out.println(jsonObj.toString());
-        System.out.println(request1.get("client").toString());    
+        //JSONObject request1 = new JSONObject(jsonObj.get("1").toString());    
+        /*System.out.println(jsonObj.toString());
+        System.out.println(request1.get("client").toString());    */
         
     }
     
+    public void Close() throws IOException{
+        this.client.close();
+    }
     
 }
