@@ -27,7 +27,7 @@ class DataBaseConnection:
         self.DataBase.commit()
 
     def getAllRequests(self):
-        self.DataBaseCursor.execute('SELECT * from Request')
+        self.DataBaseCursor.execute("SELECT * from Request WHERE status=?", ('EM ANDAMENTO',))
         Requests = self.DataBaseCursor.fetchall()
         ListRequestsIDs = list()
         ListRequests = list()
@@ -59,6 +59,6 @@ class DataBaseConnection:
         return DictResponse
 
 
-    def setFinishRequest(self, client):
-        self.DataBaseCursor.execute('UPDATE Request SET status = ? WHERE client = ?', ('Concluido', client))
+    def setFinishRequest(self, phone):
+        self.DataBaseCursor.execute('UPDATE Request SET status = ? WHERE phone = ?', ('Concluido', phone))
         self.DataBase.commit()

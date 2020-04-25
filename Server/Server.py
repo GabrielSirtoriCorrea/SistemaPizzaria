@@ -42,8 +42,8 @@ class ClientManage(socketserver.BaseRequestHandler):
                     
             elif data['ID'] == 'DesktopFinishRequest':
                 DataBase = DataBaseConnection.DataBaseConnection()
-                DataBase.setFinishRequest(data['client'])
-                print(DataBase.getAllRequests())
+                DataBase.setFinishRequest(data['phone'])
+                print(DataBase.getAllRequests()) 
 
             elif data['ID'] == 'DesktopGetAllRequests':
                 DataBase = DataBaseConnection.DataBaseConnection()
