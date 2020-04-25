@@ -18,7 +18,7 @@ import org.json.JSONObject;
  *
  * @author Gazebo
  */
-public class ActualRequests extends javax.swing.JFrame implements ActionListener {
+public class ActualRequests extends javax.swing.JFrame {
     SocketConnection connection;
     JSONObject jsonObj;
     String AllRequests;
@@ -37,8 +37,8 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
              
         jsonObj.put("ID", "DesktopGetAllRequests");
         
-        btnStart.addActionListener(this);
-        
+        Timer timer = new Timer(1000, new ActionListenerLoop());
+        timer.start();
     }
 
     /**
@@ -331,96 +331,9 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
     private javax.swing.JLabel lblTotalPrice;
     private javax.swing.JLabel lbltotalPrice;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        try {
-                connection = new SocketConnection("192.168.0.5",  3000);
-                
-                AllRequests = connection.SendMessage(String.valueOf(jsonObj));
-                AllRequestsJson = new JSONObject(AllRequests);
-                  
-                FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
-               
-                System.out.println(FirstRequest.toString());
-                
-                lblClient.setText(FirstRequest.get("client").toString());
-                
-                lblPizzaType.setText("Tamanho: " +FirstRequest.get("pizzaType").toString());
-                lblPizzaTaste.setText("Sabor: " + FirstRequest.get("pizzaTaste1").toString());
-                
-                lblAddress.setText("<html>"+FirstRequest.get("address").toString().replace("\n", "<br/>")+"</html>");
-                
-                lblPhone.setText(FirstRequest.get("phone").toString());
-                
-                lblComments.setText(FirstRequest.get("comments").toString());
-                
-                lbltotalPrice.setText(FirstRequest.get("totalPrice").toString());
-                
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("2").toString());
-               
-                     lblNextRequest1.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("3").toString());
-               
-                     lblNextRequest2.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("4").toString());
-               
-                     lblNextRequest3.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("5").toString());
-               
-                     lblNextRequest4.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("6").toString());
-               
-                     lblNextRequest5.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                   
-                } catch (JSONException ex) {
-                    System.out.println("NAO EXISTE");
-                    }
-            
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
+ 
         
-  }
-    /*class ActionListenerLoop implements ActionListener{
+    class ActionListenerLoop implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -517,6 +430,8 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
             
         }
         
-    }*/
+    }
+
+}
     
 
