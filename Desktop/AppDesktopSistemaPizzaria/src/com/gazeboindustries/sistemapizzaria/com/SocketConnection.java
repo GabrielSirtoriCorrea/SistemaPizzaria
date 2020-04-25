@@ -57,6 +57,10 @@ public class SocketConnection {
         
     }
     
+    public void SendFinishRequest(String message)throws JSONException, IOException{
+        out.print(message);
+    }
+    
     public void Close() throws IOException{
         this.client.close();
     }
