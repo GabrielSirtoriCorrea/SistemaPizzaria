@@ -18,7 +18,7 @@ import org.json.JSONObject;
  *
  * @author Gazebo
  */
-public class ActualRequests extends javax.swing.JFrame implements ActionListener {
+public class ActualRequests extends javax.swing.JFrame {
     SocketConnection connection;
     JSONObject jsonObj;
     String AllRequests;
@@ -37,7 +37,7 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
              
         jsonObj.put("ID", "DesktopGetAllRequests");
         
-        btnStart.addActionListener(this);
+       UpdateRequests();
         
     }
 
@@ -79,7 +79,6 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
         lblNextRequest3 = new javax.swing.JLabel();
         lblNextRequest4 = new javax.swing.JLabel();
         lblNextRequest5 = new javax.swing.JLabel();
-        btnStart = new javax.swing.JButton();
         Imagebackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -217,10 +216,6 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 240, 370, 550);
 
-        btnStart.setText("INICIAR");
-        getContentPane().add(btnStart);
-        btnStart.setBounds(550, 760, 73, 23);
-
         Imagebackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\WallpaperDesktop2.jpg")); // NOI18N
         Imagebackground.setText("jLabel1");
         Imagebackground.setMaximumSize(new java.awt.Dimension(1440, 900));
@@ -242,20 +237,21 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
 
         try {
             connection.Close();
-            connection = new SocketConnection("192.168.0.5",  3000);
-            
-            
-             AllRequests = connection.SendMessage(String.valueOf(jsonObj));
-             AllRequestsJson = new JSONObject(AllRequests);
-                  
-              FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
-              FirstRequest.put("ID", "DesktopFinishRequest");
-              
-             connection.SendFinishRequest(FirstRequest.toString());
+            connection = null;
+        
+             connection = new SocketConnection("192.168.0.5", 3000);
+        
             
         } catch (IOException ex) {
             Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
+        FirstRequest.put("ID", "DesktopFinishRequest");
+        
+        connection.SendFinishRequest(String.valueOf(FirstRequest));
+        UpdateRequests();
+        System.out.println("PASSOU AQUI");
                 
     }//GEN-LAST:event_btnFinishRequestActionPerformed
 
@@ -300,7 +296,6 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
     private javax.swing.JPanel PanelLastRequest;
     private javax.swing.JLabel blComments;
     private javax.swing.JButton btnFinishRequest;
-    private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -331,100 +326,12 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
     private javax.swing.JLabel lblTotalPrice;
     private javax.swing.JLabel lbltotalPrice;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        try {
-                connection = new SocketConnection("192.168.0.5",  3000);
-                
-                AllRequests = connection.SendMessage(String.valueOf(jsonObj));
-                AllRequestsJson = new JSONObject(AllRequests);
-                  
-                FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
-               
-                System.out.println(FirstRequest.toString());
-                
-                lblClient.setText(FirstRequest.get("client").toString());
-                
-                lblPizzaType.setText("Tamanho: " +FirstRequest.get("pizzaType").toString());
-                lblPizzaTaste.setText("Sabor: " + FirstRequest.get("pizzaTaste1").toString());
-                
-                lblAddress.setText("<html>"+FirstRequest.get("address").toString().replace("\n", "<br/>")+"</html>");
-                
-                lblPhone.setText(FirstRequest.get("phone").toString());
-                
-                lblComments.setText(FirstRequest.get("comments").toString());
-                
-                lbltotalPrice.setText(FirstRequest.get("totalPrice").toString());
-                
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("2").toString());
-               
-                     lblNextRequest1.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("3").toString());
-               
-                     lblNextRequest2.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("4").toString());
-               
-                     lblNextRequest3.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("5").toString());
-               
-                     lblNextRequest4.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                    
-                    
-                }catch(JSONException ex){
-                    System.out.println("NAO EXISTE");
-                }
-                
-                try{
-                     NextRequest = new JSONObject(AllRequestsJson.get("6").toString());
-               
-                     lblNextRequest5.setText("<html>"+NextRequest.get("pizzaType").toString()+"<br/>"+NextRequest.get("pizzaTaste1").toString()+"</html>");
-               
-                   
-                } catch (JSONException ex) {
-                    System.out.println("NAO EXISTE");
-                    }
-            
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
+ 
         
-  }
-    /*class ActionListenerLoop implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
+    public void UpdateRequests(){
+        try {
+                setAllNull();
+            
                 connection = new SocketConnection("192.168.0.5",  3000);
                 
                 AllRequests = connection.SendMessage(String.valueOf(jsonObj));
@@ -512,11 +419,26 @@ public class ActualRequests extends javax.swing.JFrame implements ActionListener
             } catch (IOException ex) {
                 Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
-        }
+    }
+    
+    
+    public void setAllNull(){
+        lblClient.setText(" ");
+        lblPizzaType.setText(" ");
+        lblPizzaTaste.setText(" ");
+        lblAddress.setText(" ");
+        lblPhone.setText(" ");
+        lblComments.setText(" ");
+        lbltotalPrice.setText(" ");
         
-    }*/
+        lblNextRequest1.setText(" ");
+        lblNextRequest2.setText(" ");
+        lblNextRequest3.setText(" ");
+        lblNextRequest4.setText(" ");
+        lblNextRequest5.setText(" ");
+        
+    }
+
+}
     
 
