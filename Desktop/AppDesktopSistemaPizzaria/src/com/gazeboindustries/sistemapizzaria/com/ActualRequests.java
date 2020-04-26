@@ -37,8 +37,8 @@ public class ActualRequests extends javax.swing.JFrame {
              
         jsonObj.put("ID", "DesktopGetAllRequests");
         
-        Timer timer = new Timer(1000, new ActionListenerLoop());
-        timer.start();
+       UpdateRequests();
+        
     }
 
     /**
@@ -79,7 +79,6 @@ public class ActualRequests extends javax.swing.JFrame {
         lblNextRequest3 = new javax.swing.JLabel();
         lblNextRequest4 = new javax.swing.JLabel();
         lblNextRequest5 = new javax.swing.JLabel();
-        btnStart = new javax.swing.JButton();
         Imagebackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -217,10 +216,6 @@ public class ActualRequests extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 240, 370, 550);
 
-        btnStart.setText("INICIAR");
-        getContentPane().add(btnStart);
-        btnStart.setBounds(550, 760, 73, 23);
-
         Imagebackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\WallpaperDesktop2.jpg")); // NOI18N
         Imagebackground.setText("jLabel1");
         Imagebackground.setMaximumSize(new java.awt.Dimension(1440, 900));
@@ -242,20 +237,21 @@ public class ActualRequests extends javax.swing.JFrame {
 
         try {
             connection.Close();
-            connection = new SocketConnection("192.168.0.5",  3000);
-            
-            
-             AllRequests = connection.SendMessage(String.valueOf(jsonObj));
-             AllRequestsJson = new JSONObject(AllRequests);
-                  
-              FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
-              FirstRequest.put("ID", "DesktopFinishRequest");
-              
-             connection.SendFinishRequest(FirstRequest.toString());
+            connection = null;
+        
+             connection = new SocketConnection("192.168.0.5", 3000);
+        
             
         } catch (IOException ex) {
             Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
+        FirstRequest.put("ID", "DesktopFinishRequest");
+        
+        connection.SendFinishRequest(String.valueOf(FirstRequest));
+        UpdateRequests();
+        System.out.println("PASSOU AQUI");
                 
     }//GEN-LAST:event_btnFinishRequestActionPerformed
 
@@ -300,7 +296,6 @@ public class ActualRequests extends javax.swing.JFrame {
     private javax.swing.JPanel PanelLastRequest;
     private javax.swing.JLabel blComments;
     private javax.swing.JButton btnFinishRequest;
-    private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -333,11 +328,10 @@ public class ActualRequests extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
  
         
-    class ActionListenerLoop implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
+    public void UpdateRequests(){
+        try {
+                setAllNull();
+            
                 connection = new SocketConnection("192.168.0.5",  3000);
                 
                 AllRequests = connection.SendMessage(String.valueOf(jsonObj));
@@ -425,10 +419,23 @@ public class ActualRequests extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
-        }
+    }
+    
+    
+    public void setAllNull(){
+        lblClient.setText(" ");
+        lblPizzaType.setText(" ");
+        lblPizzaTaste.setText(" ");
+        lblAddress.setText(" ");
+        lblPhone.setText(" ");
+        lblComments.setText(" ");
+        lbltotalPrice.setText(" ");
+        
+        lblNextRequest1.setText(" ");
+        lblNextRequest2.setText(" ");
+        lblNextRequest3.setText(" ");
+        lblNextRequest4.setText(" ");
+        lblNextRequest5.setText(" ");
         
     }
 

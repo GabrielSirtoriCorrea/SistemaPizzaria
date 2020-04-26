@@ -36,7 +36,6 @@ class DataBaseConnection:
 
         for Request in Requests:
             cont+=1
-            print(cont)
             ListRequestsIDs.append(str(cont))
 
             ListRequests.append(dict(zip(ListRequestData, Request)))
@@ -53,8 +52,6 @@ class DataBaseConnection:
 
 
         DictResponse = dict(zip(ListRequestsIDs, ListRequests))
-
-        print(DictResponse)
 
         return DictResponse
 
