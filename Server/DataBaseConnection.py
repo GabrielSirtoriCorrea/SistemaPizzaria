@@ -53,6 +53,8 @@ class DataBaseConnection:
 
         DictResponse = dict(zip(ListRequestsIDs, ListRequests))
 
+        print(DictResponse)
+
         return DictResponse
 
 
