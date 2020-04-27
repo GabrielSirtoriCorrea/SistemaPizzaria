@@ -23,6 +23,7 @@ public class ActualRequests extends javax.swing.JFrame {
     JSONObject jsonObj;
     String AllRequests;
     JSONObject AllRequestsJson;
+    JSONObject ResponseRequest;
     JSONObject FirstRequest;
     JSONObject NextRequest;
    
@@ -79,10 +80,11 @@ public class ActualRequests extends javax.swing.JFrame {
         lblNextRequest3 = new javax.swing.JLabel();
         lblNextRequest4 = new javax.swing.JLabel();
         lblNextRequest5 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
         Imagebackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        MenuHistoryRequests = new javax.swing.JMenu();
+        MenuOpenHistoryRequests = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1440, 850));
@@ -163,7 +165,7 @@ public class ActualRequests extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFinishRequest);
-        btnFinishRequest.setBounds(1050, 740, 280, 70);
+        btnFinishRequest.setBounds(1110, 720, 280, 70);
 
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
         jPanel1.setLayout(null);
@@ -216,17 +218,39 @@ public class ActualRequests extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 240, 370, 550);
 
+        btnUpdate.setBackground(new java.awt.Color(204, 204, 0));
+        btnUpdate.setFont(new java.awt.Font("Impact", 3, 24)); // NOI18N
+        btnUpdate.setText("Atualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUpdate);
+        btnUpdate.setBounds(720, 720, 280, 70);
+
         Imagebackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\WallpaperDesktop2.jpg")); // NOI18N
         Imagebackground.setText("jLabel1");
         Imagebackground.setMaximumSize(new java.awt.Dimension(1440, 900));
         getContentPane().add(Imagebackground);
         Imagebackground.setBounds(-130, -20, 1570, 870);
 
-        jMenu1.setText("Pedidos atuais");
-        jMenuBar1.add(jMenu1);
+        MenuHistoryRequests.setText("Histórico de pedidos");
+        MenuHistoryRequests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuHistoryRequestsActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("Histórico de pedidos");
-        jMenuBar1.add(jMenu2);
+        MenuOpenHistoryRequests.setText("Abrir Histórico de pedidos");
+        MenuOpenHistoryRequests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpenHistoryRequestsActionPerformed(evt);
+            }
+        });
+        MenuHistoryRequests.add(MenuOpenHistoryRequests);
+
+        jMenuBar1.add(MenuHistoryRequests);
 
         setJMenuBar(jMenuBar1);
 
@@ -237,23 +261,44 @@ public class ActualRequests extends javax.swing.JFrame {
 
         try {
             connection.Close();
+            
             connection = null;
-        
-             connection = new SocketConnection("192.168.0.5", 3000);
-        
+            
+            connection = new SocketConnection("192.168.0.5", 3000);
             
         } catch (IOException ex) {
             Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
-        FirstRequest.put("ID", "DesktopFinishRequest");
-        
-        connection.SendFinishRequest(String.valueOf(FirstRequest));
+       
+        ResponseRequest = new JSONObject(AllRequestsJson.get("1").toString());
+        ResponseRequest.put("ID", "DesktopFinishRequest");
+        try {
+            connection.SendMessage(String.valueOf(ResponseRequest));
+        } catch (JSONException | IOException ex) {
+            Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
+        }
         UpdateRequests();
         System.out.println("PASSOU AQUI");
                 
     }//GEN-LAST:event_btnFinishRequestActionPerformed
+
+    private void MenuHistoryRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoryRequestsActionPerformed
+        // TODO add your handling code here
+        
+    }//GEN-LAST:event_MenuHistoryRequestsActionPerformed
+
+    private void MenuOpenHistoryRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpenHistoryRequestsActionPerformed
+        // TODO add your handling code here:
+        new HistoryRequests().setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_MenuOpenHistoryRequestsActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        UpdateRequests();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,9 +338,12 @@ public class ActualRequests extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Imagebackground;
+    private javax.swing.JMenu MenuHistoryRequests;
+    private javax.swing.JMenuItem MenuOpenHistoryRequests;
     private javax.swing.JPanel PanelLastRequest;
     private javax.swing.JLabel blComments;
     private javax.swing.JButton btnFinishRequest;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -307,8 +355,6 @@ public class ActualRequests extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAddress;
@@ -331,12 +377,13 @@ public class ActualRequests extends javax.swing.JFrame {
     public void UpdateRequests(){
         try {
                 setAllNull();
-            
-                connection = new SocketConnection("192.168.0.5",  3000);
+                
+                connection = new SocketConnection("192.168.0.5", 3000);
+                
                 
                 AllRequests = connection.SendMessage(String.valueOf(jsonObj));
                 AllRequestsJson = new JSONObject(AllRequests);
-                  
+                
                 FirstRequest = new JSONObject(AllRequestsJson.get("1").toString());
                
                 System.out.println(FirstRequest.toString());
@@ -413,11 +460,8 @@ public class ActualRequests extends javax.swing.JFrame {
                 
                 connection.Close();
                 
-                
-            } catch (JSONException ex) {
-                Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ActualRequests.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException | IOException ex) {
+                System.out.println("NAO EXISTE");
             }
     }
     
