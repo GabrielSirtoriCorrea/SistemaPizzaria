@@ -5,17 +5,101 @@
  */
 package com.gazeboindustries.sistemapizzaria.com;
 
+import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  *
  * @author Gazebo
  */
 public class HistoryRequests extends javax.swing.JFrame {
+    JSONObject jsonObj;
+    SocketConnection connection;
+    String AllRequests; 
+    JSONObject AllRequestsJson;
+    JSONObject FirstRequest;
+    JPanel painelFundo;
+    JScrollPane barraRolagem;
+    
 
     /**
      * Creates new form HistoryRequests
      */
     public HistoryRequests() {
+        
+        jsonObj = new JSONObject();
+             
+        jsonObj.put("ID", "DesktopGetAllRequests");
+        
+        painelFundo = new JPanel();
+        barraRolagem = new JScrollPane();
+       
+        try {
+            connection = new SocketConnection("192.168.0.5", 3000);
+            
+            AllRequests = connection.SendMessage(String.valueOf(jsonObj));
+            
+            System.out.println(AllRequests);
+            AllRequestsJson = new JSONObject(AllRequests);
+        } catch (IOException ex) {
+            Logger.getLogger(HistoryRequests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JLabel[] label = new JLabel[AllRequestsJson.length() + 1];
+                
+            for(int cont = 1; cont <=AllRequestsJson.length(); cont++){
+                try{
+                        FirstRequest = new JSONObject(AllRequestsJson.get(Integer.toString(cont)).toString());
+
+                        System.out.println(FirstRequest.toString());
+
+                        label[cont] = new JLabel();
+                        
+                        barraRolagem.add(label[cont]);
+
+                       System.out.println("TUDO CERTO");
+                }catch(NullPointerException e){
+                    System.out.println("ERRO");
+                }
+                }
+            
+         
+         painelFundo.add(barraRolagem); 
+        
+                
+
+        for(int i = 1; i <= AllRequestsJson.length(); i++){
+            FirstRequest = (JSONObject) AllRequestsJson.get(Integer.toString(i));
+       
+            label[i].setText(FirstRequest.get("client").toString().toUpperCase());
+            label[i].setFont(new java.awt.Font("Postino Std", 1, 18));
+            painelFundo.add(label[i]);
+             }
+        
+        getContentPane().add(painelFundo);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        
+        
+        painelFundo.setSize(1000, 720);
+        
         initComponents();
+
+        
+        painelFundo.setVisible(true);
+       
+        
+        painelFundo.setLocation(380,  30);
+        
     }
 
     /**
