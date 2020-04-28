@@ -26,7 +26,7 @@ class DataBaseConnection:
 
         self.DataBase.commit()
 
-    def getAllRequests(self):
+    def getAllPendingRequests(self):
         self.DataBaseCursor.execute("SELECT * from Request WHERE status=?", ('EM ANDAMENTO',))
         Requests = self.DataBaseCursor.fetchall()
         ListRequestsIDs = list()
@@ -61,3 +61,34 @@ class DataBaseConnection:
     def setFinishRequest(self, phone):
         self.DataBaseCursor.execute('UPDATE Request SET status = ? WHERE phone = ?', ('Concluido', phone))
         self.DataBase.commit()
+
+    def getAllRequests(self):
+        self.DataBaseCursor.execute("SELECT * from Request WHERE status=?", ('Concluido',))
+        Requests = self.DataBaseCursor.fetchall()
+        ListRequestsIDs = list()
+        ListRequests = list()
+        ListRequestData = ['client', 'phone', 'address', 'pizzaType', 'pizzaQntdTastes', 'pizzaTaste1', 'comments', 'totalPrice', 'status']
+        cont = 0
+
+        for Request in Requests:
+            cont+=1
+            ListRequestsIDs.append(str(cont))
+
+            ListRequests.append(dict(zip(ListRequestData, Request)))
+            '''DictResponse += {
+            'client': Requests[Request][0],
+            'phone': Requests[Request][1],
+            'address': Requests[Request][2],
+            'pizzaType': Requests[Request][3],
+            'pizzaQntdTastes': Requests[Request][4],
+            'pizzaTaste1': Requests[Request][5],
+            'comments': Requests[Request][6],
+            'totalPrice': Requests[Request][7],
+            'status': Requests[Request][8]}'''
+
+
+        DictResponse = dict(zip(ListRequestsIDs, ListRequests))
+
+        print(DictResponse)
+
+        return DictResponse

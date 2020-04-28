@@ -33,21 +33,25 @@ class ClientManage(socketserver.BaseRequestHandler):
   
         #try:
         if True:
+
+            DataBase = DataBaseConnection.DataBaseConnection()
+
             data = json.loads(data)
 
             if data['ID'] == 'AppSendNewRequest':
-                DataBase = DataBaseConnection.DataBaseConnection()
                 DataBase.InsertNewRequest(json.dumps(data))
                 print(DataBase.getAllRequests())
                     
             elif data['ID'] == 'DesktopFinishRequest':
-                DataBase = DataBaseConnection.DataBaseConnection()
                 DataBase.setFinishRequest(data['phone'])
                 print(DataBase.getAllRequests()) 
 
+            elif data['ID'] == 'DesktopGetAllPendingRequests':
+                self.request.send(json.dumps(DataBase.getAllPendingRequests()).encode())
+
             elif data['ID'] == 'DesktopGetAllRequests':
-                DataBase = DataBaseConnection.DataBaseConnection()
                 self.request.send(json.dumps(DataBase.getAllRequests()).encode())
+                
         '''except:
             print("ALGUM ERRO ACONTECEU")'''
 

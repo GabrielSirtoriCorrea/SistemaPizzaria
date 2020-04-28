@@ -36,7 +36,7 @@ public class ActualRequests extends javax.swing.JFrame {
         
         jsonObj = new JSONObject();
              
-        jsonObj.put("ID", "DesktopGetAllRequests");
+        jsonObj.put("ID", "DesktopGetAllPendingRequests");
         
        UpdateRequests();
         
