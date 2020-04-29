@@ -5,6 +5,8 @@
  */
 package com.gazeboindustries.sistemapizzaria.com;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -29,7 +31,7 @@ public class HistoryRequests extends javax.swing.JFrame {
     JSONObject FirstRequest;
     JPanel painelFundo;
     JScrollPane barraRolagem;
-    
+    JPanel RequestPanel;
 
     /**
      * Creates new form HistoryRequests
@@ -40,9 +42,12 @@ public class HistoryRequests extends javax.swing.JFrame {
              
         jsonObj.put("ID", "DesktopGetAllRequests");
         
-        painelFundo = new JPanel();
-        barraRolagem = new JScrollPane();
+        painelFundo = new JPanel();     
+       painelFundo.setBackground(new java.awt.Color(153, 0, 0));
+       barraRolagem = new JScrollPane();
+       barraRolagem.setViewportView(painelFundo);
        
+        
         try {
             connection = new SocketConnection("192.168.0.5", 3000);
             
@@ -54,51 +59,69 @@ public class HistoryRequests extends javax.swing.JFrame {
             Logger.getLogger(HistoryRequests.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        painelFundo.setLayout(new GridLayout(AllRequestsJson.length() + 1, 1));
+        JLabel[] PizzaLabel = new JLabel[AllRequestsJson.length() + 1];
         JLabel[] label = new JLabel[AllRequestsJson.length() + 1];
+        JLabel[] PriceLabel = new JLabel[AllRequestsJson.length() + 1];
                 
             for(int cont = 1; cont <=AllRequestsJson.length(); cont++){
                 try{
-                        FirstRequest = new JSONObject(AllRequestsJson.get(Integer.toString(cont)).toString());
-
-                        System.out.println(FirstRequest.toString());
 
                         label[cont] = new JLabel();
-                        
-                        barraRolagem.add(label[cont]);
+                        PizzaLabel[cont] = new JLabel();
+                        PriceLabel[cont] = new JLabel();
 
                        System.out.println("TUDO CERTO");
                 }catch(NullPointerException e){
                     System.out.println("ERRO");
                 }
                 }
-            
-         
-         painelFundo.add(barraRolagem); 
         
                 
 
         for(int i = 1; i <= AllRequestsJson.length(); i++){
             FirstRequest = (JSONObject) AllRequestsJson.get(Integer.toString(i));
-       
-            label[i].setText(FirstRequest.get("client").toString().toUpperCase());
+            
+            System.out.println(FirstRequest.toString());
+            
+            RequestPanel = new JPanel();
+            
+            RequestPanel.setBackground(new java.awt.Color(153, 0, 0));
+            
+            label[i].setText( FirstRequest.get("client").toString() + "                 ");
             label[i].setFont(new java.awt.Font("Postino Std", 1, 18));
-            painelFundo.add(label[i]);
+            label[i].setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\Imagem Cliente.jpg"));
+            PizzaLabel[i].setText("<html>"+FirstRequest.get("pizzaType").toString()+ "<br/>" + FirstRequest.get("pizzaTaste1").toString() + " &emsp; &emsp; &emsp; &emsp; &emsp;"+"</html>" );
+            PizzaLabel[i].setFont(new java.awt.Font("Postino Std", 1, 14));
+            PizzaLabel[i].setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\Imagem pizza.jpg"));
+            PriceLabel[i].setText( " " +FirstRequest.get("totalPrice").toString());
+            PriceLabel[i].setFont(new java.awt.Font("Postino Std", 1, 18));
+            PriceLabel[i].setIcon(new javax.swing.ImageIcon("C:\\Users\\Gazebo\\Documents\\ProjetosGithub\\SistemaPizzaria\\Images\\Imagem Preço.png"));
+            
+            RequestPanel.add(label[i]);
+            RequestPanel.add(PizzaLabel[i]);
+            RequestPanel.add(PriceLabel[i]);
+            
+            painelFundo.add(RequestPanel);
+            
              }
         
-        getContentPane().add(painelFundo);
+        getContentPane().add(barraRolagem);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         
         
-        painelFundo.setSize(1000, 720);
+        barraRolagem.setSize(1000, 720);
         
         initComponents();
-
         
-        painelFundo.setVisible(true);
-       
+        barraRolagem.setVisible(true);
         
-        painelFundo.setLocation(380,  30);
+        
+        barraRolagem.setLocation(380,  30);
+        
+        
         
     }
 
@@ -188,6 +211,7 @@ public class HistoryRequests extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
