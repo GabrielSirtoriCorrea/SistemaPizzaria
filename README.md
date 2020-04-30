@@ -23,17 +23,24 @@ Exemplo simples de um sistema de pizzaria
  ### Histórico de pedidos:
 
    ![Histórico de pedidos](https://github.com/GabrielSirtoriCorrea/SistemaPizzaria/blob/master/Images/Imagem%20Exemplo%20Projeto%202.JPG)
+   
+---
+   
 ## Imagens de exemplo App mobile
 
 ### Menu inicial:
 
-
+![Menu Inicial](https://github.com/GabrielSirtoriCorrea/SistemaPizzaria/blob/master/Images/WhatsApp%20Image%202020-04-29%20at%2021.50.25%20(2).jpeg)
 
 ### Cadastro de endereço:
- 
 
-### Escolha e envio de pedido
+![Cadastro de endereço](https://github.com/GabrielSirtoriCorrea/SistemaPizzaria/blob/master/Images/WhatsApp%20Image%202020-04-29%20at%2021.50.25%20(1).jpeg)
 
+### Escolha e envio de pedido:
+
+   ![Escolha e envio de pedidos](https://github.com/GabrielSirtoriCorrea/SistemaPizzaria/blob/master/Images/WhatsApp%20Image%202020-04-29%20at%2021.50.25.jpeg)
+
+---
 
 ## Notas do projeto:
     - Resultado App Mobile muito abaixo do planejado
