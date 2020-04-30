@@ -18,10 +18,11 @@ Exemplo simples de um sistema de pizzaria
  ## Imagens de exemplo Desktop
  
  ### Pedidos Atuais:
-
+  ![Pedidos Atuais](https://github.com/GabrielSirtoriCorrea/SistemaPizzaria/blob/master/Images/Imagem%20Exemplo%20Projeto.JPG)
 
  ### Histórico de pedidos:
 
+   ![Histórico de pedidos](https://github.com/GabrielSirtoriCorrea/SistemaPizzaria/blob/master/Images/Imagem%20Exemplo%20Projeto%202.JPG)
 ## Imagens de exemplo App mobile
 
 ### Menu inicial:
@@ -32,6 +33,7 @@ Exemplo simples de um sistema de pizzaria
  
 
 ### Escolha e envio de pedido
+
 
 ## Notas do projeto:
     - Resultado App Mobile muito abaixo do planejado
