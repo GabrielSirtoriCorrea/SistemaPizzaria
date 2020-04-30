@@ -28,11 +28,10 @@ class ClientManage(socketserver.BaseRequestHandler):
         hora = datetime.now()
         print(f'Conectado por: {self.client_address} as {hora.hour}:{hora.minute}')
 
-        data = self.request.recv(1024).decode('utf-8')
+        data = self.request.recv(1024).decode()
         print(data)
   
-        #try:
-        if True:
+        try:
 
             DataBase = DataBaseConnection.DataBaseConnection()
 
@@ -52,8 +51,8 @@ class ClientManage(socketserver.BaseRequestHandler):
             elif data['ID'] == 'DesktopGetAllRequests':
                 self.request.send(json.dumps(DataBase.getAllRequests()).encode())
                 
-        '''except:
-            print("ALGUM ERRO ACONTECEU")'''
+        except:
+            print("ALGUM ERRO ACONTECEU")
 
 adress = (myHost, myPort)
 server = socketserver.ThreadingTCPServer(adress, ClientManage)
